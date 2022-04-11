@@ -18,8 +18,7 @@ public class Point1 {
 	}
 
 	public Point1(Point1 other) {
-		this._x = other._x;
-		this._y = other._y;
+		this(other._x, other._y);
 	}
 
 	public int getX() {
@@ -56,28 +55,28 @@ public class Point1 {
 	}
 
 	public boolean isAbove(Point1 other) {
-		if (this._y > other._y && this._y != other._y) {
+		if (this._y > other._y) {
 			return true;
 		}
 		return false;
 	}
 
 	public boolean isUnder(Point1 other) {
-		if (!isAbove(other)) {
+		if (other.isAbove(this)) {
 			return true;
 		}
 		return false;
 	}
 
 	public boolean isLeft(Point1 other) {
-		if (this._x > other._x && this._x != this._y) {
+		if (this._x > other._x) {
 			return false;
 		}
 		return true;
 	}
 
 	public boolean isRight(Point1 other) {
-		if (!isLeft(other)) {
+		if (other.isLeft(this)) {
 			return true;
 		}
 		return false;
@@ -89,7 +88,7 @@ public class Point1 {
 	}
 
 	public void move(int dx, int dy) {
-		if (dx < 0 || dy  < 0) {
+		if (dx < 0 || dy < 0) {
 			return;
 		} else {
 			this._x = dx;

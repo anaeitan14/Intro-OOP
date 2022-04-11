@@ -11,8 +11,7 @@ public class Point2 {
 	}
 
 	public Point2(Point2 other) {
-		this._radius = other._radius;
-		this._alpha = other._alpha;
+		this(other.getX(), other.getY());
 	}
 
 	public int getX() {
@@ -49,8 +48,8 @@ public class Point2 {
 		}
 		return false;
 	}
-	
+
 	public String toString() {
-		return "("+getX()+","+getY()+")";
+		return "(" + getX() + "," + getY() + ")";
 	}
 }
