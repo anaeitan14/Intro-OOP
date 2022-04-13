@@ -38,6 +38,10 @@ public class Segment {
 		return _poRight;
 	}
 
+	public int getLength() {
+		return (int) this._poLeft.distance(this._poRight);
+	}
+
 	public String toString() {
 		return _poLeft.toString() + "---" + _poRight.toString();
 	}
@@ -104,14 +108,20 @@ public class Segment {
 	}
 
 	public boolean isBigger(Segment other) {
-		if (this._poLeft.distance(this._poRight) > other._poLeft.distance(other._poRight)) {
+		if (this.getLength() > other.getLength()) {
 			return true;
 		}
 		return false;
 	}
 
 	public int overLap(Segment other) {
-		return 0;
+		if (this._poRight.getX() > other._poLeft.getX()) {
+			return (int) other._poLeft.distance(this._poRight);
+		} else if (this._poRight.getX() > other._poLeft.getX()) {
+			return (int) other._poRight.distance(this._poLeft);
+		} else {
+			return 0;
+		}
 	}
 
 	public double trapezePerimeter(Segment other) {
