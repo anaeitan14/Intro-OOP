@@ -20,9 +20,8 @@ public class Person {
 			}
 
 			partner = newPartner;
-			newPartner.setPartner(this);
+			this.partner.setPartner(this);
 		}
-
 	}
 
 	public void setName(String name) {
