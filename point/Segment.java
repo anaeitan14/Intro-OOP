@@ -64,14 +64,14 @@ public class Segment {
 	}
 
 	public boolean isLeft(Segment other) {
-		if (this.getPoLeft().getX() < other.getPoLeft().getX()) {
+		if (this.getPoRight().getX() < other.getPoLeft().getX()) {
 			return true;
 		}
 		return false;
 	}
 
 	public boolean isRight(Segment other) {
-		if (this.getPoRight().getX() > this.getPoRight().getX()) {
+		if (this.getPoLeft().getX() > other.getPoRight().getX()) {
 			return true;
 		}
 		return false;
@@ -88,16 +88,25 @@ public class Segment {
 	}
 
 	public void changeSize(int delta) {
+		if (this.getPoRight().getX() + delta < this.getPoLeft().getX()) {
+			return;
+		}
+		this.getPoRight().setX(this.getPoRight().getX() + delta);
 
 	}
 
 	public boolean pointOnSegment(Point1 p) {
-
+		if ((p.getX() >= this.getPoLeft().getX()) && (p.getX() <= this.getPoRight().getX())
+				&& p.getY() == this._poLeft.getY()) {
+			return true;
+		}
 		return false;
 	}
 
 	public boolean isBigger(Segment other) {
-
+		if (this._poLeft.distance(this._poRight) > other._poLeft.distance(other._poRight)) {
+			return true;
+		}
 		return false;
 	}
 
