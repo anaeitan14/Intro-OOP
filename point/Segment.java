@@ -29,7 +29,7 @@ public class Segment {
 	public Segment(Segment other) {
 		this(other._poLeft, other._poRight);
 	}
-
+	
 	public Point1 getPoLeft() {
 		return _poLeft;
 	}
@@ -116,15 +116,16 @@ public class Segment {
 
 	public int overLap(Segment other) {
 		if (this._poRight.getX() > other._poLeft.getX()) {
-			return (int) other._poLeft.distance(this._poRight);
+			return (int) this._poRight.getX() - other._poLeft.getX();
 		} else if (this._poRight.getX() > other._poLeft.getX()) {
-			return (int) other._poRight.distance(this._poLeft);
+			return (int) other._poRight.getX() - this._poLeft.getX();
 		} else {
 			return 0;
 		}
 	}
 
 	public double trapezePerimeter(Segment other) {
-		return 0.0;
+		return this._poLeft.distance(other._poLeft) + this._poRight.distance(other._poRight) + this.getLength()
+				+ other.getLength();
 	}
 }
