@@ -29,7 +29,7 @@ public class Segment {
 	public Segment(Segment other) {
 		this(other._poLeft, other._poRight);
 	}
-	
+
 	public Point1 getPoLeft() {
 		return _poLeft;
 	}
@@ -115,12 +115,12 @@ public class Segment {
 	}
 
 	public int overLap(Segment other) {
-		if (this._poRight.getX() > other._poLeft.getX()) {
-			return (int) this._poRight.getX() - other._poLeft.getX();
-		} else if (this._poRight.getX() > other._poLeft.getX()) {
-			return (int) other._poRight.getX() - this._poLeft.getX();
-		} else {
+		if (_poRight.getX() < other._poLeft.getX() || _poLeft.getX() > other._poRight.getX()) {
 			return 0;
+		} else if (_poRight.getX() > other._poLeft.getX()) {
+			return _poRight.getX() - other._poLeft.getX();
+		} else {
+			return _poLeft.getX() - other._poRight.getX();
 		}
 	}
 
