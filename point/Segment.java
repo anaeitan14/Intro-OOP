@@ -82,8 +82,8 @@ public class Segment {
 	}
 
 	public void moveHorizontal(int delta) {
-		this._poLeft.setX(this._poLeft.getX() + delta);
-		this._poRight.setX(this._poRight.getX() + delta);
+		this._poLeft.setX(this.getPoLeft().getX() + delta);
+		this._poRight.setX(this.getPoRight().getX() + delta);
 	}
 
 	public void moveVertical(int delta) {
@@ -115,12 +115,12 @@ public class Segment {
 	}
 
 	public int overLap(Segment other) {
-		if (_poRight.getX() < other._poLeft.getX() || _poLeft.getX() > other._poRight.getX()) {
+		if (this.isLeft(other) || this.isRight(other)) {
 			return 0;
-		} else if (_poRight.getX() > other._poLeft.getX()) {
-			return _poRight.getX() - other._poLeft.getX();
+		} else if (this.getPoRight().getX() > other.getPoLeft().getX()) {
+			return this.getPoRight().getX() - other.getPoLeft().getX();
 		} else {
-			return _poLeft.getX() - other._poRight.getX();
+			return other.getPoRight().getX() - this.getPoLeft().getX();
 		}
 	}
 
