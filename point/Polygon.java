@@ -94,7 +94,7 @@ public class Polygon {
 		return false;
 	}
 
-	public int findVertix(Point1 p) {
+	public int findVertex(Point1 p) {
 		for (int i = 0; i < _noOfVertices; i++) {
 			if (_vertices[i].equals(p)) {
 				return i;
@@ -104,17 +104,46 @@ public class Polygon {
 		return -1;
 	}
 
-	public Point1 getNextVert(Point1 p) {
+	public Point1 getNextVertex(Point1 p) {
 		for (int i = 0; i < _noOfVertices; i++) {
 			if (_vertices[i].equals(p) && i == _noOfVertices - 1) {
 				return new Point1(_vertices[0]);
-			} else if (_vertices[i].equals(p) && _noOfVertices == 1) {
+			} else if (_vertices[i].equals(p) && _noOfVertices == 0) {
 				return new Point1(p);
 			} else if (_vertices[i].equals(p)) {
-				return new Point1(p);
+				return new Point1(_vertices[i + 1]);
 			}
-
 		}
 		return null;
+	}
+
+	public Polygon getBoundingBox() {
+		if (_noOfVertices < 3) {
+			return null;
+		}
+
+		Polygon poli = new Polygon();
+		int height = 0, left = _vertices[0].getX(), right = _vertices[0].getX(), lowest = _vertices[0].getX();
+		for (int i = 0; i < _noOfVertices; i++) {
+			if (_vertices[i].getY() > height) {
+				height = _vertices[i].getY();
+			}
+			if (_vertices[i].getX() > right) {
+				right = _vertices[i].getX();
+			}
+			if (_vertices[i].getX() < left) {
+				left = _vertices[i].getX();
+			}
+			if (_vertices[i].getY() < lowest) {
+				lowest = _vertices[i].getY();
+			}
+		}
+		poli.addVertice(left, 0);
+		poli.addVertice(left, height);
+		poli.addVertice(right, height);
+		poli.addVertice(right, 0);
+
+		return poli;
+
 	}
 }
