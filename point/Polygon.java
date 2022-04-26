@@ -139,10 +139,10 @@ public class Polygon {
 				lowest = _vertices[i].getY();
 			}
 		}
-		poli.addVertice(left, 0);
-		poli.addVertice(left, height);
-		poli.addVertice(right, height);
-		poli.addVertice(right, 0);
+		poli.addVertex(left, 0);
+		poli.addVertex(left, height);
+		poli.addVertex(right, height);
+		poli.addVertex(right, 0);
 
 		return poli;
 
