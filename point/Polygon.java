@@ -11,7 +11,7 @@ public class Polygon {
 		_noOfVertices = 0;
 	}
 
-	public boolean addVertice(int x, int y) {
+	public boolean addVertex(int x, int y) {
 		Point1 newPoint = new Point1(x, y);
 		if (_noOfVertices < _vertices.length) {
 			_vertices[_noOfVertices++] = newPoint;
@@ -21,7 +21,7 @@ public class Polygon {
 		}
 	}
 
-	public Point1 highestVertix() {
+	public Point1 highestVertex() {
 		Point1 highestVertix = null;
 		int highestVertixY = 0;
 
@@ -63,6 +63,7 @@ public class Polygon {
 				peri += _vertices[i].distance(_vertices[i + 1]);
 			}
 		}
+		peri += _vertices[_noOfVertices-1].distance(_vertices[0]);
 		return peri;
 	}
 
