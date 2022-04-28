@@ -7,7 +7,7 @@ public class SegmentTest {
 		Segment seg = new Segment(copy);
 		System.out.println(copy.toString());
 		System.out.println(seg.toString());
-		System.out.println(copy.overLap(seg));
+		System.out.println(copy.overlap(seg));
 	}
 	
 }

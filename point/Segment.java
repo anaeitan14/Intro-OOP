@@ -114,7 +114,7 @@ public class Segment {
 		return false;
 	}
 
-	public int overLap(Segment other) {
+	public int overlap(Segment other) {
 		if (this.isLeft(other) || this.isRight(other)) {
 			return 0;
 		} else if (this.getPoRight().getX() > other.getPoLeft().getX()) {

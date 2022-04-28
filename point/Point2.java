@@ -85,8 +85,8 @@ public class Point2 {
 		if (dX < 0 || dY < 0) {
 			return;
 		} else {
-			this.setX(dX);
-			this.setY(dY);
+			this.setX(getX()+dX);
+			this.setY(getY()+dY);
 		}
 	}
 

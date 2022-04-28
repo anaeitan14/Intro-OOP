@@ -69,7 +69,7 @@ public class Point1 {
 	}
 
 	public boolean isLeft(Point1 other) {
-		if (this._x > other._x) {
+		if (this._x >= other._x) {
 			return false;
 		}
 		return true;
@@ -91,8 +91,8 @@ public class Point1 {
 		if (dx < 0 || dy < 0) {
 			return;
 		} else {
-			this._x = dx;
-			this._y = dy;
+			this._x += dx;
+			this._y += dy;
 		}
 	}
 
