@@ -3,12 +3,17 @@ package point;
 public class MatrixTest {
 
 	public static void main(String[] args) {
-		Matrix myObj = new Matrix(5, 3);
-		System.out.println(myObj.toString());
-		Matrix copy = myObj.makeNegative();
-		System.out.println();
+		
+		int[][] mat = {{4,3,8},{123,64,43}};
+		Matrix sec = new Matrix(mat);
+		System.out.println("----------------------");
+		System.out.println(sec.toString());
+		System.out.println("----------------------");
+		Matrix copy = sec.makeNegative();
+		System.out.println("----------------------");
 		System.out.println(copy.toString());
-
+		Matrix HD = copy.imageFilterAverage();
+		System.out.println(HD.toString());
 	}
 
 }
