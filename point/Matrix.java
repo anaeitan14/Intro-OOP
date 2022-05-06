@@ -46,16 +46,7 @@ public class Matrix {
 		Matrix copy = new Matrix(mat);
 		for (int i = 0; i < mat.length; i++) {
 			for (int j = 0; j < mat[0].length; j++) {
-				if ((i == 1 || i == mat.length - 2) && (j == 1 || j == mat[0].length - 2)) {
-					int num = averageNine(mat, i, j);
-					copy.mat[i][j] = num;
-				} else if (i == 0 && (j == 1 || j == mat[0].length - 2)) {
-					int num = averageSixTop(mat, i, j);
-					copy.mat[i][j] = num;
-				} else if (i == mat.length - 1 && (j == 1 || j == mat[0].length - 2)) {
-					int num = averageSixDown(mat, i, j);
-					copy.mat[i][j] = num;
-				} else if (i == 0 && j == 0) {
+				if (i == 0 && j == 0) {
 					copy.mat[i][j] = topLeftCorner(mat, i, j);
 				} else if (i == 0 && j == mat[0].length - 1) {
 					copy.mat[i][j] = topRightCorner(mat, i, j);
@@ -63,8 +54,17 @@ public class Matrix {
 					copy.mat[i][j] = bottomLeftCorner(mat, i, j);
 				} else if (i == mat.length - 1 && j == mat[0].length - 1) {
 					copy.mat[i][j] = bottomRightCorner(mat, i, j);
+				} else if (i == 0 && (j != 0 || j != mat[0].length - 1)) {
+					copy.mat[i][j] = averageSixTop(mat, i, j);
+				} else if (i == mat.length - 1 && (j != 0 || j != mat[0].length - 1)) {
+					copy.mat[i][j] = averageSixDown(mat, i, j);
+				} else if ((i != 0 || i != mat.length - 1) && j == 0) {
+					copy.mat[i][j] = fiveAverageLeft(mat, i, j);
+				} else if ((i != 0 || i != mat.length - 1) && (j == mat[0].length - 1)) {
+					copy.mat[i][j] = fiveAverageRight(mat, i, j);
+				} else {           
+					copy.mat[i][j] = averageNine(mat, i, j);
 				}
-
 			}
 		}
 		return copy;
@@ -100,6 +100,16 @@ public class Matrix {
 
 	public static int bottomRightCorner(int[][] matrice, int i, int j) {
 		return (matrice[i][j] + matrice[i - 1][j] + matrice[i - 1][j - 1] + matrice[i][j - 1]) / 4;
+	}
+
+	public static int fiveAverageLeft(int[][] matrice, int i, int j) {
+		return (matrice[i][j] + matrice[i - 1][j] + matrice[i + 1][j] + matrice[i][j + 1] + matrice[i + 1][j + 1]
+				+ matrice[i - 1][j + 1]) / 6;
+	}
+
+	public static int fiveAverageRight(int[][] matrice, int i, int j) {
+		return (matrice[i][j] + matrice[i - 1][j] + matrice[i + 1][j] + matrice[i][j - 1] + matrice[i + 1][j - 1]
+				+ matrice[i - 1][j - 1]) / 6;
 	}
 
 }
